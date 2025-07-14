@@ -1,0 +1,19 @@
+# Core LangChain and LangGraph libraries
+langchain
+langgraph
+langchain-core
+
+# LLM Integrations
+langchain-openai      # For OpenAI LLMs and Embeddings
+langchain-anthropic   # For Anthropic Claude LLMs
+langchain-xai         # For XAI Grok LLMs
+langchain-google-genai # For Google Gemini LLMs
+langchain-ollama      # For Ollama LLMs
+
+# Vector Store and Embeddings dependencies
+faiss-cpu             # FAISS for vector similarity search
+tiktoken              # Tokenization for OpenAI models (used by embeddings)
+
+# Jupyter Notebook and kernel
+jupyter
+ipykernel
