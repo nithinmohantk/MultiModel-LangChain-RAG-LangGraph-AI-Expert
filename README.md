@@ -18,10 +18,12 @@ The goal of this repository is to showcase different iterations of building inte
 │   ├── 04_langchain_rag_anthropic_expert.ipynb
 │   ├── 05_langchain_rag_grok_expert.ipynb
 │   ├── 06_langchain_rag_gemini_expert.ipynb
-│   └── 07_langchain_rag_ollama_expert.ipynb
+│   ├── 07_langchain_rag_ollama_expert.ipynb
+│   └── 08_langchain_rag_mistral_expert.ipynb # New notebook
 ├── prompt.txt
 ├── pisa_history.txt
 ├── requirements.txt
+├── LICENSE
 └── README.md
 
 ```
@@ -92,6 +94,15 @@ The goal of this repository is to showcase different iterations of building inte
     * Create a `prompt.txt` file (same as above).
     * Create a `pisa_history.txt` file (same as above).
 
+### 8. `08_langchain_rag_mistral_expert.ipynb` (LangChain RAG Expert with LangGraph State Management - Mistral AI)
+
+* **Description:** This notebook extends the RAG-LangGraph agent by integrating Mistral AI models as the core Large Language Model. It demonstrates how to seamlessly switch to Mistral models while leveraging the established RAG pipeline, LangGraph for state management, and the comprehensive guardrails defined in `prompt.txt`. OpenAI embeddings are still used for the vector store for consistency.
+* **Key Technologies:** LangChain (`langchain-mistralai`, `langchain-openai` for embeddings), LangGraph, FAISS, Mistral AI (e.g., `mistral-large`).
+* **Setup:**
+    * Ensure your `MISTRAL_API_KEY` and `OPENAI_API_KEY` (for embeddings) environment variables are set.
+    * Create a `prompt.txt` file (same as above).
+    * Create a `pisa_history.txt` file (same as above).
+
 ## General Setup for All Notebooks
 
 Before running any of the notebooks, ensure you have a Python environment set up and the necessary packages installed. Each notebook's first cell includes `%pip install -U ...` commands to install its specific dependencies.
@@ -109,8 +120,16 @@ These files are crucial for the notebooks to function correctly, especially for 
 **Common Files:**
 
 * **`requirements.txt`**: Lists all Python dependencies needed for the notebooks.
-* **`prompt.txt`**: This file defines the system-level instructions, persona, and guardrails for the AI agent. It is used by `02_langchain_openai_chat.ipynb` through `07_langchain_rag_ollama_expert.ipynb`.
-* **`pisa_history.txt`**: This file serves as the local knowledge base for RAG. It is used by `03_langchain_rag_openai_expert.ipynb` through `07_langchain_rag_ollama_expert.ipynb`.
+* **`prompt.txt`**: This file defines the system-level instructions, persona, and guardrails for the AI agent. It is used by `02_langchain_openai_chat.ipynb` through `08_langchain_rag_mistral_expert.ipynb`.
+* **`pisa_history.txt`**: This file serves as the local knowledge base for RAG. It is used by `03_langchain_rag_openai_expert.ipynb` through `08_langchain_rag_mistral_expert.ipynb`.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contributors
+
+* Nithin Mohan ([@nithinmohantk](https://github.com/nithinmohantk))
 
 ## API Key Acquisition Links
 
@@ -139,6 +158,10 @@ You will need API keys from the respective providers to run these examples. It i
     * **Installation:** [ollama.com](https://ollama.com/)
     * **Model Pulling Example:** `ollama pull llama2` (run in your terminal after installing Ollama)
 
+* **Mistral AI API Key (`MISTRAL_API_KEY`):**
+    * Used for the Mistral LLM in Notebook 8.
+    * Get your key here: [Mistral AI Platform](https://console.mistral.ai/api-keys/)
+
 ## How to Run
 
 1.  **Clone the Repository:**
@@ -152,6 +175,7 @@ You will need API keys from the respective providers to run these examples. It i
     export ANTHROPIC_API_KEY='your_anthropic_key'
     export XAI_API_KEY='your_xai_key'
     export GOOGLE_API_KEY='your_google_key'
+    export MISTRAL_API_KEY='your_mistral_key'
     # Ollama does not use an API key, but ensure its server is running.
     # export OLLAMA_BASE_URL='http://localhost:11434' # (Optional, if not default)
     ```
@@ -179,10 +203,3 @@ You will need API keys from the respective providers to run these examples. It i
     jupyter notebook
     ```
 7.  **Open and Run Notebooks:** Navigate to the `notebooks/` directory and open each `.ipynb` file. Select the "Python (AI Expert Env)" kernel. Run the cells sequentially. If you encounter `ModuleNotFoundError` after installation, ensure your virtual environment is active and try restarting the Jupyter kernel and running the setup cell again.
-
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Contributors
-Nithin Mohan (@nithinmohantk)
