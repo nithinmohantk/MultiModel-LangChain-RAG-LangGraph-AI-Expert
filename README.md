@@ -16,10 +16,14 @@ The goal of this repository is to showcase different iterations of building inte
 │   ├── 02_langchain_openai_chat.ipynb
 │   ├── 03_langchain_rag_openai_expert.ipynb
 │   ├── 04_langchain_rag_anthropic_expert.ipynb
-│   └── 05_langchain_rag_grok_expert.ipynb
+│   ├── 05_langchain_rag_grok_expert.ipynb
+│   ├── 06_langchain_rag_gemini_expert.ipynb
+│   └── 07_langchain_rag_ollama_expert.ipynb
 ├── prompt.txt
 ├── pisa_history.txt
+├── requirements.txt
 └── README.md
+
 ```
 
 ---
@@ -68,14 +72,45 @@ The goal of this repository is to showcase different iterations of building inte
     * Create a `prompt.txt` file (same as above).
     * Create a `pisa_history.txt` file (same as above).
 
+### 6. `06_langchain_rag_gemini_expert.ipynb` (LangChain RAG Expert with LangGraph State Management - Gemini)
+
+* **Description:** This notebook extends the RAG-LangGraph agent by integrating Google's Gemini API as the core Large Language Model. It demonstrates how to seamlessly switch to Gemini while leveraging the established RAG pipeline, LangGraph for state management, and the comprehensive guardrails defined in `prompt.txt`. OpenAI embeddings are still used for the vector store for consistency.
+* **Key Technologies:** LangChain (`langchain-google-genai`, `langchain-openai` for embeddings), LangGraph, FAISS, Google Gemini.
+* **Setup:**
+    * Ensure your `GOOGLE_API_KEY` and `OPENAI_API_KEY` (for embeddings) environment variables are set.
+    * Create a `prompt.txt` file (same as above).
+    * Create a `pisa_history.txt` file (same as above).
+
+### 7. `07_langchain_rag_ollama_expert.ipynb` (LangChain RAG Expert with LangGraph State Management - Ollama)
+
+* **Description:** This notebook continues the series by integrating Ollama as the local Large Language Model provider. It showcases how to use a locally run LLM with the existing RAG pipeline, LangGraph for state management, and the comprehensive guardrails. This is ideal for local development and privacy-focused applications. OpenAI embeddings are still used for the vector store for consistency, but you could also explore Ollama's embedding models.
+* **Key Technologies:** LangChain (`langchain-ollama`, `langchain-openai` for embeddings), LangGraph, FAISS, Ollama (with a local model like Llama2).
+* **Setup:**
+    * **Install Ollama:** Follow instructions on [ollama.com](https://ollama.com/) to install Ollama and pull a model (e.g., `ollama pull llama2`).
+    * Ensure your Ollama server is running.
+    * Ensure your `OPENAI_API_KEY` (for embeddings) environment variable is set.
+    * Create a `prompt.txt` file (same as above).
+    * Create a `pisa_history.txt` file (same as above).
+
 ## General Setup for All Notebooks
 
 Before running any of the notebooks, ensure you have a Python environment set up and the necessary packages installed. Each notebook's first cell includes `%pip install -U ...` commands to install its specific dependencies.
 
+### Initial File Preparation
+
+After cloning this repository, please ensure the following files are located in the **root directory** of the repository (the same directory as this `README.md` file):
+
+* `requirements.txt`
+* `prompt.txt`
+* `pisa_history.txt`
+
+These files are crucial for the notebooks to function correctly, especially for loading system prompts and knowledge base content.
+
 **Common Files:**
 
-* **`prompt.txt`**: This file defines the system-level instructions, persona, and guardrails for the AI agent. It is used by `02_langchain_openai_chat.ipynb`, `03_langchain_rag_openai_expert.ipynb`, `04_langchain_rag_anthropic_expert.ipynb`, and `05_langchain_rag_grok_expert.ipynb`.
-* **`pisa_history.txt`**: This file serves as the local knowledge base for RAG. It is used by `03_langchain_rag_openai_expert.ipynb`, `04_langchain_rag_anthropic_expert.ipynb`, and `05_langchain_rag_grok_expert.ipynb`.
+* **`requirements.txt`**: Lists all Python dependencies needed for the notebooks.
+* **`prompt.txt`**: This file defines the system-level instructions, persona, and guardrails for the AI agent. It is used by `02_langchain_openai_chat.ipynb` through `07_langchain_rag_ollama_expert.ipynb`.
+* **`pisa_history.txt`**: This file serves as the local knowledge base for RAG. It is used by `03_langchain_rag_openai_expert.ipynb` through `07_langchain_rag_ollama_expert.ipynb`.
 
 ## API Key Acquisition Links
 
@@ -84,7 +119,7 @@ You will need API keys from the respective providers to run these examples. It i
 * **OpenAI API Key (`OPENAI_API_KEY`):**
     * Used for basic LLM interactions (Notebook 1).
     * Used for the LLM in Notebooks 2 and 3.
-    * Used for embeddings in RAG examples (Notebooks 3, 4 & 5).
+    * Used for embeddings in RAG examples (Notebooks 3, 4, 5, 6 & 7).
     * Get your key here: [OpenAI API Keys](https://platform.openai.com/account/api-keys)
 
 * **Anthropic API Key (`ANTHROPIC_API_KEY`):**
@@ -94,6 +129,15 @@ You will need API keys from the respective providers to run these examples. It i
 * **XAI Grok API Key (`XAI_API_KEY`):**
     * Used for the Grok LLM in Notebook 5.
     * Get your key here: [XAI Docs: Get Started](https://docs.x.ai/docs/get-started) (You'll need to sign up and generate a key from their console).
+
+* **Google Gemini API Key (`GOOGLE_API_KEY`):**
+    * Used for the Gemini LLM in Notebook 6.
+    * Get your key here: [Google AI Studio](https://aistudio.google.com/app/apikey)
+
+* **Ollama (No API Key, Local Server):**
+    * Used for the Ollama LLM in Notebook 7.
+    * **Installation:** [ollama.com](https://ollama.com/)
+    * **Model Pulling Example:** `ollama pull llama2` (run in your terminal after installing Ollama)
 
 ## How to Run
 
@@ -107,10 +151,31 @@ You will need API keys from the respective providers to run these examples. It i
     export OPENAI_API_KEY='your_openai_key'
     export ANTHROPIC_API_KEY='your_anthropic_key'
     export XAI_API_KEY='your_xai_key'
+    export GOOGLE_API_KEY='your_google_key'
+    # Ollama does not use an API key, but ensure its server is running.
+    # export OLLAMA_BASE_URL='http://localhost:11434' # (Optional, if not default)
     ```
     *(Replace `your_..._key` with your actual keys.)*
-3.  **Launch Jupyter Notebook:**
+3.  **Create and Activate Virtual Environment:**
+    ```bash
+    python -m venv venv
+    # On macOS/Linux:
+    source venv/bin/activate
+    # On Windows (Command Prompt):
+    venv\Scripts\activate.bat
+    # On Windows (PowerShell):
+    .\venv\Scripts\Activate.ps1
+    ```
+4.  **Install Dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+5.  **Install Jupyter Kernel for the Environment:**
+    ```bash
+    python -m ipykernel install --user --name=my_ai_expert_env --display-name "Python (AI Expert Env)"
+    ```
+6.  **Launch Jupyter Notebook:**
     ```bash
     jupyter notebook
     ```
-4.  **Open and Run Notebooks:** Navigate to the `notebooks/` directory and open each `.ipynb` file. Run the cells sequentially. The first cell in each notebook will install necessary packages. If you encounter `ModuleNotFoundError` after installation, try restarting the Jupyter kernel and running the setup cell again.
+7.  **Open and Run Notebooks:** Navigate to the `notebooks/` directory and open each `.ipynb` file. Select the "Python (AI Expert Env)" kernel. Run the cells sequentially. If you encounter `ModuleNotFoundError` after installation, ensure your virtual environment is active and try restarting the Jupyter kernel and running the setup cell again.
