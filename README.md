@@ -179,3 +179,10 @@ You will need API keys from the respective providers to run these examples. It i
     jupyter notebook
     ```
 7.  **Open and Run Notebooks:** Navigate to the `notebooks/` directory and open each `.ipynb` file. Select the "Python (AI Expert Env)" kernel. Run the cells sequentially. If you encounter `ModuleNotFoundError` after installation, ensure your virtual environment is active and try restarting the Jupyter kernel and running the setup cell again.
+
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Contributors
+Nithin Mohan (@nithinmohantk)
