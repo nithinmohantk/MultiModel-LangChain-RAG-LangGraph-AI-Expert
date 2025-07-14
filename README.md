@@ -19,7 +19,8 @@ The goal of this repository is to showcase different iterations of building inte
 │   ├── 05_langchain_rag_grok_expert.ipynb
 │   ├── 06_langchain_rag_gemini_expert.ipynb
 │   ├── 07_langchain_rag_ollama_expert.ipynb
-│   └── 08_langchain_rag_mistral_expert.ipynb # New notebook
+│   ├── 08_langchain_rag_mistral_expert.ipynb
+│   └── 09_langchain_rag_nvidia_chat_expert.ipynb # New notebook
 ├── prompt.txt
 ├── pisa_history.txt
 ├── requirements.txt
@@ -103,6 +104,15 @@ The goal of this repository is to showcase different iterations of building inte
     * Create a `prompt.txt` file (same as above).
     * Create a `pisa_history.txt` file (same as above).
 
+### 9. `09_langchain_rag_nvidia_chat_expert.ipynb` (LangChain RAG Expert with LangGraph State Management - NVIDIA Chat)
+
+* **Description:** This notebook extends the RAG-LangGraph agent by integrating NVIDIA Chat models as the core Large Language Model. It demonstrates how to seamlessly switch to NVIDIA Chat models while leveraging the established RAG pipeline, LangGraph for state management, and the comprehensive guardrails defined in `prompt.txt`. OpenAI embeddings are still used for the vector store for consistency.
+* **Key Technologies:** LangChain (`langchain-nvidia-ai-endpoints`, `langchain-openai` for embeddings), LangGraph, FAISS, NVIDIA Chat (e.g., `nvidia/nemotron-4-340b-instruct`).
+* **Setup:**
+    * Ensure your `NVIDIA_API_KEY` and `OPENAI_API_KEY` (for embeddings) environment variables are set.
+    * Create a `prompt.txt` file (same as above).
+    * Create a `pisa_history.txt` file (same as above).
+
 ## General Setup for All Notebooks
 
 Before running any of the notebooks, ensure you have a Python environment set up and the necessary packages installed. Each notebook's first cell includes `%pip install -U ...` commands to install its specific dependencies.
@@ -120,8 +130,8 @@ These files are crucial for the notebooks to function correctly, especially for 
 **Common Files:**
 
 * **`requirements.txt`**: Lists all Python dependencies needed for the notebooks.
-* **`prompt.txt`**: This file defines the system-level instructions, persona, and guardrails for the AI agent. It is used by `02_langchain_openai_chat.ipynb` through `08_langchain_rag_mistral_expert.ipynb`.
-* **`pisa_history.txt`**: This file serves as the local knowledge base for RAG. It is used by `03_langchain_rag_openai_expert.ipynb` through `08_langchain_rag_mistral_expert.ipynb`.
+* **`prompt.txt`**: This file defines the system-level instructions, persona, and guardrails for the AI agent. It is used by `02_langchain_openai_chat.ipynb` through `09_langchain_rag_nvidia_chat_expert.ipynb`.
+* **`pisa_history.txt`**: This file serves as the local knowledge base for RAG. It is used by `03_langchain_rag_openai_expert.ipynb` through `09_langchain_rag_nvidia_chat_expert.ipynb`.
 
 ## License
 
@@ -138,7 +148,7 @@ You will need API keys from the respective providers to run these examples. It i
 * **OpenAI API Key (`OPENAI_API_KEY`):**
     * Used for basic LLM interactions (Notebook 1).
     * Used for the LLM in Notebooks 2 and 3.
-    * Used for embeddings in RAG examples (Notebooks 3, 4, 5, 6 & 7).
+    * Used for embeddings in RAG examples (Notebooks 3, 4, 5, 6, 7, 8 & 9).
     * Get your key here: [OpenAI API Keys](https://platform.openai.com/account/api-keys)
 
 * **Anthropic API Key (`ANTHROPIC_API_KEY`):**
@@ -162,6 +172,10 @@ You will need API keys from the respective providers to run these examples. It i
     * Used for the Mistral LLM in Notebook 8.
     * Get your key here: [Mistral AI Platform](https://console.mistral.ai/api-keys/)
 
+* **NVIDIA API Key (`NVIDIA_API_KEY`):**
+    * Used for the NVIDIA Chat LLM in Notebook 9.
+    * Get your key here: [NVIDIA AI Playground](https://build.nvidia.com/explore/discover) (You'll need to sign up and generate an API key from your account settings).
+
 ## How to Run
 
 1.  **Clone the Repository:**
@@ -176,6 +190,7 @@ You will need API keys from the respective providers to run these examples. It i
     export XAI_API_KEY='your_xai_key'
     export GOOGLE_API_KEY='your_google_key'
     export MISTRAL_API_KEY='your_mistral_key'
+    export NVIDIA_API_KEY='your_nvidia_key'
     # Ollama does not use an API key, but ensure its server is running.
     # export OLLAMA_BASE_URL='http://localhost:11434' # (Optional, if not default)
     ```
