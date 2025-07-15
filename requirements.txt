@@ -9,10 +9,20 @@ langchain-anthropic   # For Anthropic Claude LLMs
 langchain-xai         # For XAI Grok LLMs
 langchain-google-genai # For Google Gemini LLMs
 langchain-ollama      # For Ollama LLMs
+langchain-mistralai   # For Mistral AI LLMs
+langchain-nvidia-ai-endpoints # For NVIDIA Chat LLMs
+langchain-huggingface # For HuggingFace LLMs
 
 # Vector Store and Embeddings dependencies
 faiss-cpu             # FAISS for vector similarity search
 tiktoken              # Tokenization for OpenAI models (used by embeddings)
+
+# HuggingFace specific dependencies
+huggingface_hub
+transformers
+
+# Fix for protobuf compatibility issue
+protobuf==3.20.3      # Pinned version to avoid "Descriptors cannot be created directly" error
 
 # Jupyter Notebook and kernel
 jupyter
